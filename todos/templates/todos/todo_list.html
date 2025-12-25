@@ -1,0 +1,15 @@
+<h1>My Todos</h1>
+
+<a href="{% url 'logout' %}">로그아웃</a>
+
+<form method="post" action="{% url 'add_todo' %}">
+  {% csrf_token %}
+  <input type="text" name="title" placeholder="할 일 입력">
+  <button type="submit">추가</button>
+</form>
+
+<ul>
+  {% for todo in todos %}
+    <li>{{ todo.title }} {% if todo.completed %}(완료){% endif %}</li>
+  {% endfor %}
+</ul>
